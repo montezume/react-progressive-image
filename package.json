@@ -2,9 +2,9 @@
   "name": "@montezume/react-progressive-image",
   "version": "0.0.1",
   "description": "",
-  "main": "build/index.cjs.js",
-  "module": "build/index.es.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint .",
@@ -12,6 +12,10 @@
     "postbuild": "tsc -p tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/montezume/react-progressive-image"

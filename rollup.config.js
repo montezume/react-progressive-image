@@ -4,8 +4,6 @@ import postcss from 'rollup-plugin-postcss';
 import del from 'rollup-plugin-delete';
 import pkg from './package.json';
 
-Object.keys(pkg.peerDependencies).map((a) => console.log(a));
-
 const external = Object.keys(pkg.peerDependencies).map((dep) => dep);
 
 export default {
@@ -26,9 +24,9 @@ export default {
     },
   ],
   plugins: [
-    del({ targets: 'build/*' }),
+    del({ targets: 'dist/*' }),
     postcss({
-      extract: path.resolve('build/index.css'),
+      extract: path.resolve('dist/index.css'),
     }),
     babel({
       exclude: 'node_modules/**',
