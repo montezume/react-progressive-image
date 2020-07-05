@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import cx from 'classnames';
 import { useInView } from 'react-intersection-observer';
 import './index.css';
 
@@ -9,21 +10,10 @@ interface Props {
 
 export const Image: React.FC<
   Props & React.ImgHTMLAttributes<HTMLImageElement>
-> = ({ alt, thumb, aspectRatio, ...props }) => {
+> = ({ alt, thumb, aspectRatio, className, ...props }) => {
   const [ref, inView] = useInView({ triggerOnce: true });
   const [isLoaded, setIsLoaded] = useState(false);
   const showImage = isLoaded || inView;
-
-  let thumbClassName =
-    'react-progressive-image__image react-progressive-image__thumb';
-
-  let imageClassName =
-    'react-progressive-image__image react-progressive-image__full';
-
-  if (isLoaded) {
-    thumbClassName = thumbClassName + ' react-progressive-image__thumb__loaded';
-    imageClassName = imageClassName + ' react-progressive-image__loaded';
-  }
 
   return (
     <div
@@ -34,7 +24,13 @@ export const Image: React.FC<
       {showImage && (
         <React.Fragment>
           <img
-            className={thumbClassName}
+            className={cx(
+              'react-progressive-image__image react-progressive-image__thumb',
+              className,
+              {
+                isLoaded: 'react-progressive-image__thumb__loaded',
+              }
+            )}
             alt={alt}
             src={thumb}
             style={{ visibility: isLoaded ? 'hidden' : 'visible' }}
@@ -44,7 +40,13 @@ export const Image: React.FC<
             onLoad={() => {
               setIsLoaded(true);
             }}
-            className={imageClassName}
+            className={cx(
+              'react-progressive-image__image react-progressive-image__full',
+              className,
+              {
+                isLoaded: 'react-progressive-image__loaded',
+              }
+            )}
             alt={alt}
           />
         </React.Fragment>
