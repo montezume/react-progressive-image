@@ -1,35 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
+import { useIntersectionObserver } from './useIntersectionObserver';
 import './index.css';
-
-const useIntersectionObserver = ({
-  target,
-  onIntersect,
-  threshold = 0.1,
-  rootMargin = '0px',
-}: {
-  target?: Element;
-  onIntersect: IntersectionObserverCallback;
-  threshold?: number;
-  rootMargin?: string;
-}) => {
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(onIntersect, {
-      rootMargin,
-      threshold,
-    });
-
-    if (target) {
-      observer.observe(target);
-    }
-
-    return () => {
-      if (target) {
-        observer.unobserve(target);
-      }
-    };
-  });
-};
 
 interface Props {
   thumb: string;
@@ -43,17 +15,15 @@ export const Image: React.FC<
   const [isLoaded, setIsLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  if (ref.current) {
-    useIntersectionObserver({
-      target: ref.current,
-      onIntersect: ([{ isIntersecting }], observerElement) => {
-        if (isIntersecting) {
-          setIsVisible(true);
-          observerElement.unobserve(ref.current as HTMLDivElement);
-        }
-      },
-    });
-  }
+  useIntersectionObserver({
+    target: ref,
+    onIntersect: ([{ isIntersecting }], observerElement) => {
+      if (isIntersecting) {
+        setIsVisible(true);
+        observerElement.unobserve(ref.current as HTMLDivElement);
+      }
+    },
+  });
 
   return (
     <div

@@ -18,6 +18,6 @@
     "listEmittedFiles": true,
     "noEmit": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/index.tsx"],
   "exclude": ["dist"]
 }

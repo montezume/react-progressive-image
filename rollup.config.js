@@ -28,7 +28,7 @@ export default {
   ],
   plugins: [
     del({ targets: 'dist/*' }),
-    resolve(),
+    resolve({ extensions: ['.ts', '.js', '.tsx'] }),
     postcss({
       extract: path.resolve('dist/index.css'),
     }),
