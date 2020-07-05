@@ -12,6 +12,10 @@
     "postbuild": "tsc -p tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/montezume/react-progressive-image"
+  },
   "author": "",
   "license": "MIT",
   "peerDependencies": {
