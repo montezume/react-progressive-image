@@ -28,7 +28,7 @@ export const Image: React.FC<
               'react-progressive-image__image react-progressive-image__thumb',
               className,
               {
-                isLoaded: 'react-progressive-image__thumb__loaded',
+                'react-progressive-image__thumb__loaded': isLoaded,
               }
             )}
             alt={alt}
@@ -44,7 +44,7 @@ export const Image: React.FC<
               'react-progressive-image__image react-progressive-image__full',
               className,
               {
-                isLoaded: 'react-progressive-image__loaded',
+                'react-progressive-image__loaded': isLoaded,
               }
             )}
             alt={alt}

@@ -21,7 +21,7 @@
   opacity: 1;
   display: block;
   position: relative;
-  object-fit: cover;
+  height: 100%;
 }
 
 .react-progressive-image__thumb__loaded {
