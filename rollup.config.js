@@ -3,6 +3,7 @@ import babel from 'rollup-plugin-babel';
 import postcss from 'rollup-plugin-postcss';
 import del from 'rollup-plugin-delete';
 import resolve from '@rollup/plugin-node-resolve';
+import postcssNested from 'postcss-nested';
 import pkg from './package.json';
 
 const external = Object.keys(pkg.peerDependencies)
@@ -31,6 +32,7 @@ export default {
     resolve({ extensions: ['.ts', '.js', '.tsx'] }),
     postcss({
       extract: path.resolve('dist/index.css'),
+      plugins: [postcssNested()],
     }),
     babel({
       exclude: 'node_modules/**',

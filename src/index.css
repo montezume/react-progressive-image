@@ -2,35 +2,35 @@
   position: relative;
   overflow: hidden;
   height: 100%;
-}
 
-.react-progressive-image__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+  .react-progressive-image__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-.react-progressive-image__full {
-  transition: opacity 400ms ease 0ms;
-  opacity: 0;
-}
+  .react-progressive-image__full {
+    transition: opacity 400ms ease 0ms;
+    opacity: 0;
+  }
 
-.react-progressive-image__loaded {
-  opacity: 1;
-  display: block;
-  position: relative;
-  height: 100%;
-}
+  .react-progressive-image__loaded {
+    opacity: 1;
+    display: block;
+    position: relative;
+    height: 100%;
+  }
 
-.react-progressive-image__thumb__loaded {
-  visibility: hidden;
-}
+  .react-progressive-image__thumb__loaded {
+    visibility: hidden;
+  }
 
-.react-progressive-image__thumb {
-  filter: blur(20px);
-  transform: scale(1.1);
-  transition: visibility 0ms ease 400ms;
-  visibility: visible;
+  .react-progressive-image__thumb {
+    filter: blur(20px);
+    transform: scale(1.1);
+    transition: visibility 0ms ease 400ms;
+    visibility: visible;
+  }
 }
