@@ -1,6 +1,6 @@
 {
   "name": "@montezume/react-progressive-image",
-  "version": "0.0.4",
+  "version": "0.0.1-beta1",
   "description": "",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -23,8 +23,7 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-intersection-observer": "8.x"
+    "react": ">=16.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
@@ -32,6 +31,7 @@
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
+    "@rollup/plugin-node-resolve": "^8.1.0",
     "@types/classnames": "^2.2.10",
     "@types/react": "^16.9.41",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
@@ -44,10 +44,10 @@
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-intersection-observer": "^8.26.2",
     "rollup": "^2.19.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^3.1.2",
     "typescript": "^3.9.6"
   },

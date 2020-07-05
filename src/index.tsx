@@ -1,7 +1,35 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
-import { useInView } from 'react-intersection-observer';
 import './index.css';
+
+const useIntersectionObserver = ({
+  target,
+  onIntersect,
+  threshold = 0.1,
+  rootMargin = '0px',
+}: {
+  target?: Element;
+  onIntersect: IntersectionObserverCallback;
+  threshold?: number;
+  rootMargin?: string;
+}) => {
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(onIntersect, {
+      rootMargin,
+      threshold,
+    });
+
+    if (target) {
+      observer.observe(target);
+    }
+
+    return () => {
+      if (target) {
+        observer.unobserve(target);
+      }
+    };
+  });
+};
 
 interface Props {
   thumb: string;
@@ -11,9 +39,21 @@ interface Props {
 export const Image: React.FC<
   Props & React.ImgHTMLAttributes<HTMLImageElement>
 > = ({ alt, thumb, aspectRatio, className, ...props }) => {
-  const [ref, inView] = useInView({ triggerOnce: true });
+  const ref = React.useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const showImage = isLoaded || inView;
+  const [isVisible, setIsVisible] = useState(false);
+
+  if (ref.current) {
+    useIntersectionObserver({
+      target: ref.current,
+      onIntersect: ([{ isIntersecting }], observerElement) => {
+        if (isIntersecting) {
+          setIsVisible(true);
+          observerElement.unobserve(ref.current as HTMLDivElement);
+        }
+      },
+    });
+  }
 
   return (
     <div
@@ -21,7 +61,7 @@ export const Image: React.FC<
       className="react-progressive-image__container"
       style={{ paddingBottom: !isLoaded ? `${aspectRatio}%` : 0 }}
     >
-      {showImage && (
+      {isVisible && (
         <React.Fragment>
           <img
             className={cx(
